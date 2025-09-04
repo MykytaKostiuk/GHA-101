@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="greeting">Welcome!</h1>
+        <p id="currentDate"></p>
+        <p id="daysUntilNewYear"></p>
+    </div>
+
+    <script>
+        // Get current time and date
+        const now = new Date();
+        
+        // Set greeting based on time of day
+        const hour = now.getHours();
+        let greeting = '';
+        if (hour < 12) greeting = 'Good morning';
+        else if (hour < 18) greeting = 'Good afternoon';
+        else greeting = 'Good evening';
+        document.getElementById('greeting').textContent = greeting;
+
+        // Display current date
+        document.getElementById('currentDate').textContent = 
+            `Today is ${now.toLocaleDateString()}`;
+
+        // Calculate days until New Year
+        const newYear = new Date(now.getFullYear() + 1, 0, 1);
+        const daysLeft = Math.ceil((newYear - now) / (1000 * 60 * 60 * 24));
+        document.getElementById('daysUntilNewYear').textContent = 
+            `${daysLeft} days left until New Year!`;
+    </script>
+</body>
+</html>
