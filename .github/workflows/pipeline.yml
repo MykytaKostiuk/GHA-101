@@ -2,14 +2,14 @@ name: Pipeline
 
 on: [push]
 env:
-  APPLICATION_NAME: app2
+  APPLICATION_NAME: basic application
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v5
     - name: Setup Python environment
-      uses: actions/setup-python@v1.1.1
+      uses: actions/setup-python@v6
     - name: Install requirements
       run: pip install --quiet --requirement requirements.txt
     - name: Lint code
