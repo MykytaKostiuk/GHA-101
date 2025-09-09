@@ -8,7 +8,7 @@ from flask import Flask, jsonify, abort, make_response
 app = Flask(__name__)
 
 # Load mascot data from file
-with open('data.json', 'r') as f:
+with open('data.json', 'r', encoding='utf-8') as f:
     mascots = json.load(f)
 
 
