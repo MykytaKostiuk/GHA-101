@@ -5,45 +5,39 @@ mascot: a microservice for serving mascot data
 import json
 from flask import Flask, jsonify, abort, make_response
 
-APP = Flask(__name__)
+app = Flask(__name__)
 
-# Load the data
-MASCOTS = json.load(open('data.json', 'r'))
+# Load mascot data from file
+with open('data.json', 'r') as f:
+    mascots = json.load(f)
 
 
-@APP.route('/', methods=['GET'])
+@app.route('/', methods=['GET'])
 def get_mascots():
     """
-    Function: get_mascots
-    Input: none
-    Returns: A list of mascot objects
+    Returns a list of mascot objects
     """
-    return jsonify(MASCOTS)
+    return jsonify(mascots)
 
 
-@APP.route('/<guid>', methods=['GET'])
+@app.route('/<guid>', methods=['GET'])
 def get_mascot(guid):
     """
-    Function: get_mascot
-    Input: a mascot GUID
-    Returns: The mascot object with GUID matching the input
+    Returns the mascot object with the given GUID
     """
-    for mascot in MASCOTS:
-        if guid == mascot['guid']:
-            return jsonify(mascot)
+    mascot = next((m for m in mascots if m.get('guid') == guid), None)
+    if mascot:
+        return jsonify(mascot)
     abort(404)
-    return None
 
 
-@APP.errorhandler(404)
+@app.errorhandler(404)
 def not_found(error):
     """
-    Function: not_found
-    Input: The error
-    Returns: HTTP 404 with r
+    Returns HTTP 404 with error message
     """
     return make_response(jsonify({'error': str(error)}), 404)
 
 
 if __name__ == '__main__':
-    APP.run("0.0.0.0", port=8080, debug=True)
+    app.run(host="0.0.0.0", port=8080, debug=True)
