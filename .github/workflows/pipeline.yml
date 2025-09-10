@@ -40,12 +40,12 @@ jobs:
         REPOSITORY: 101
         IMAGE_TAG: ${{ github.sha }}
       run: |
-          IMAGE=$REGISTRY/$REPOSITORY:$IMAGE_TAG
-          echo $IMAGE >> $GITHUB_ENV
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG 
     - name: Run unit tests in the container
       env:
-        IMAGE: ${{ env.IMAGE }}
+        REGISTRY: 171682868539.dkr.ecr.us-east-1.amazonaws.com/gha
+        REPOSITORY: 101
+        IMAGE_TAG: ${{ github.sha }}
       run: |
-        docker run \"$IMAGE\" python -m unittest --verbose --failfast
+        docker run \"$REGISTRY/$REPOSITORY:$IMAGE_TAG\" python -m unittest --verbose --failfast
