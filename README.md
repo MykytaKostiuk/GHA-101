@@ -1,3 +1,3 @@
 # GHA-101
 
-![example workflow](https://github.com/MykytaKostiuk/GHA-101/workflows/Pipeline/badge.svg?branch=main)
+![Pipeline](https://github.com/MykytaKostiuk/GHA-101/actions/workflows/pipeline.yml/badge.svg)
