@@ -49,5 +49,5 @@ jobs:
       env:
         IMAGE: ${{ env.IMAGE }}
       run: |
-        docker run $IMAGE python -m unittest --verbose --failfast
+        docker run "$IMAGE" python -m unittest --verbose --failfast
         
