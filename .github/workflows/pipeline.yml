@@ -39,9 +39,8 @@ jobs:
         REGISTRY: 171682868539.dkr.ecr.us-east-1.amazonaws.com/gha
         REPOSITORY: 101
         IMAGE_TAG: ${{ github.sha }}
-        IMAGE: ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}
       run: |
-          echo $IMAGE >> $GITHUB_ENV
+          echo IMAGE=$REGISTRY/$REPOSITORY:$IMAGE_TAG >> $GITHUB_ENV
           docker build -t $IMAGE .
           docker push $IMAGE
           
