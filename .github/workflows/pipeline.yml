@@ -40,7 +40,8 @@ jobs:
         REPOSITORY: 101
         IMAGE_TAG: ${{ github.sha }}
       run: |
-          echo IMAGE=$REGISTRY/$REPOSITORY:$IMAGE_TAG >> $GITHUB_ENV
+          IMAGE=$REGISTRY/$REPOSITORY:$IMAGE_TAG
+          echo $IMAGE >> $GITHUB_ENV
           docker build -t $IMAGE .
           docker push $IMAGE
           
