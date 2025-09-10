@@ -48,4 +48,4 @@ jobs:
         REPOSITORY: 101
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        docker run $REGISTRY/$REPOSITORY:$IMAGE_TAG python -m unittest --verbose --failfast
+        docker run $REGISTRY/$REPOSITORY:$IMAGE_TAG -m unittest --verbose --failfast
