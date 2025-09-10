@@ -43,6 +43,9 @@ jobs:
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
-
-        # 171682868539.dkr.ecr.us-east-1.amazonaws.com/gha/101
+    - name: Run unit tests in the container
+      env:
+        IMAGE: ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}
+      run: |
+        docker run $IMAGE python -m unittest --verbose --failfast
         
