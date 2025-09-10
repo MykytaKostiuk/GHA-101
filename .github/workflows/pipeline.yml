@@ -41,9 +41,9 @@ jobs:
         IMAGE_TAG: ${{ github.sha }}
         IMAGE: ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}
       run: |
-          echo ${{ env.IMAGE }} >> $GITHUB_ENV
-          docker build -t ${{ env.IMAGE }} .
-          docker push ${{ env.IMAGE }}
+          echo $IMAGE >> $GITHUB_ENV
+          docker build -t $IMAGE .
+          docker push $IMAGE
           
     - name: Run unit tests in the container
       run: |
