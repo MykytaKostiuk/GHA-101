@@ -42,12 +42,10 @@ jobs:
       run: |
           IMAGE=$REGISTRY/$REPOSITORY:$IMAGE_TAG
           echo $IMAGE >> $GITHUB_ENV
-          docker build -t $IMAGE .
-          docker push $IMAGE
-          
+          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG 
     - name: Run unit tests in the container
       env:
         IMAGE: ${{ env.IMAGE }}
       run: |
         docker run \"$IMAGE\" python -m unittest --verbose --failfast
-        
