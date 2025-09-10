@@ -46,6 +46,8 @@ jobs:
           docker push $IMAGE
           
     - name: Run unit tests in the container
+      env:
+        IMAGE: ${{ env.IMAGE }}
       run: |
         docker run $IMAGE python -m unittest --verbose --failfast
         
